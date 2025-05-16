@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timer, made for Nipon</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+<div class="titlebar">
+    <div class="titlebar-left">
+        <img src="static/icon.png" class="titlebar-icon" alt="NiponTimer Icon">
+        <div class="titlebar-text">NiponTimer</div>
+    </div>
+    <div class="titlebar-controls">
+        <button id="minimize-btn" class="titlebar-button">_</button>
+        <button id="maximize-btn" class="titlebar-button">□</button>
+        <button id="close-btn" class="titlebar-button">✕</button>
+    </div>
+</div>
+
+<main>
+    <div id="time"></div>
+    <div class="buttons-container">
+        <button id="start" class="timer-button">
+            Старт
+        </button>
+        <button id="stop" class="timer-button">
+            Стоп
+        </button>
+        <button id="reset" class="timer-button danger">
+            Сброс (ОПАСНО, НЕ ТРОГАТЬ!)
+        </button>
+    </div>
+</main>
+<footer>
+    <p>Сделано by <a href="https://matveykostis.github.io">MatveyKostis</a></p><br>
+    <p>Made on Electron</p>
+</footer>
+<script src="static/window-controls.js"></script>
+<script src="static/timer.js"></script>
+</body>
+</html>

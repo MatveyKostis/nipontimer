@@ -1,0 +1,36 @@
+{
+  "name": "NiponTimer",
+  "version": "0.1.0",
+  "description": "A simple timer application for Nipon",
+  "author": "MatveyKostis",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "generate-icons": "electron-icon-builder --input=./static/icon.png --output=./build --flatten"
+  },
+  "build": {
+    "appId": "com.nipon.timer",
+    "productName": "NiponTimer",
+    "files": [
+      "**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico"
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns"
+    },
+    "linux": {
+      "icon": "build/icons"
+    }
+  },
+  "devDependencies": {
+    "electron": "^36.2.1",
+    "electron-builder": "^24.6.4",
+    "electron-icon-builder": "^2.0.1"
+  }
+}
