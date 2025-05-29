@@ -2,7 +2,7 @@ name: Build and Release
 
 on:
   release:
-    types: [published]  # срабатывает, когда ты создаёшь новый релиз
+    types: [published]
 
 jobs:
   build:
@@ -20,23 +20,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: false
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Generate icons (optional)
         run: npm run generate-icons || echo "No icons to generate"
 
       - name: Build app
-        run: |
-          npm run build
+        run: npm run build
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/**/*.AppImage
-            dist/**/*.exe
+            dist/*.AppImage
+            dist/*.exe
+            dist/*.deb
+            dist/*.rpm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
