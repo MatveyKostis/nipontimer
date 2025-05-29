@@ -2,6 +2,9 @@ const timer_lol = document.getElementById('time');
 const start = document.getElementById('start');
 const stop = document.getElementById('stop');
 const reset = document.getElementById('reset');
+const dvd = document.getElementById('dvd');
+let dvd_lol = null;
+let dvd_interval = null;
 let reset_click = 0;
 let timer;
 let seconds = 0;
@@ -43,6 +46,60 @@ function updateTime() {
 
     timer_lol.textContent = formattedTime;
 }
+
+dvd.addEventListener('click', () => {
+    if (dvd_lol) {
+        dvd_lol.remove();
+        dvd_lol = null;
+        clearInterval(dvd_interval); // Исправлено: правильный метод очистки интервала
+        dvd_interval = null;
+        dvd.textContent = "Добавить DVD";
+    } else {
+        dvd_lol = document.createElement('img');
+        dvd_lol.src = 'static/dvd.png';
+        dvd_lol.style.width = '10%';
+        dvd_lol.style.position = 'absolute';
+        dvd_lol.style.padding = '10px'; // Добавлено: создаем тело для backgroundColor
+
+        let x = 500;
+        let y = 500;
+        let dx = 4;
+        let dy = 4;
+
+        // Ждем загрузки изображения перед началом анимации
+        dvd_lol.onload = function() {
+            dvd_lol.style.top = y + 'px';
+            dvd_lol.style.left = x + 'px';
+
+            function moveDvd() {
+                x += dx;
+                y += dy;
+
+                const dvdWidth = dvd_lol.offsetWidth;
+                const dvdHeight = dvd_lol.offsetHeight;
+                const titlebarHeight = 32;
+
+                if (x <= 0 || x + dvdWidth >= window.innerWidth) {
+                    dx = -dx;
+                    dvd_lol.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                }
+
+                if (y <= titlebarHeight || y + dvdHeight >= window.innerHeight) {
+                    dy = -dy;
+                    dvd_lol.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                }
+
+                dvd_lol.style.left = x + 'px';
+                dvd_lol.style.top = y + 'px';
+            }
+
+            dvd_interval = setInterval(moveDvd, 10);
+        };
+
+        document.body.appendChild(dvd_lol);
+        dvd.textContent = "Убрать DVD";
+    }
+});
 
 start.addEventListener('click', () => {
     if (timer) {
