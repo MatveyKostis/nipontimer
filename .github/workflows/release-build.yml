@@ -2,7 +2,7 @@ name: Build and Release
 
 on:
   release:
-    types: [published]
+    types: [published]  # срабатывает, когда ты создаёшь новый релиз
 
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - name: Checkout code
@@ -20,16 +20,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Generate icons
+      - name: Generate icons (optional)
         run: npm run generate-icons || echo "No icons to generate"
 
       - name: Build app
-        run: npm run build
+        run: |
+          npm run build
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
@@ -37,8 +37,5 @@ jobs:
           files: |
             dist/**/*.AppImage
             dist/**/*.exe
-            dist/**/*.dmg
-            dist/**/*.deb
-            dist/**/*.rpm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
