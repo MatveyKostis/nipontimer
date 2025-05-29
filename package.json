@@ -21,11 +21,6 @@
       "buildResources": "build",
       "output": "dist"
     },
-    "publish": {
-      "provider": "github",
-      "owner": "niponteam",
-      "repo": "nipontimer"
-    },
     "win": {
       "icon": "build/icons/icon.ico",
       "target": [
