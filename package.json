@@ -23,8 +23,8 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "your-github-username",
-      "repo": "your-repo-name"
+      "owner": "niponteam",
+      "repo": "nipontimer"
     },
     "win": {
       "icon": "build/icons/icon.ico",
