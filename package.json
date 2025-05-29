@@ -2,7 +2,7 @@
   "name": "NiponTimer",
   "version": "0.1.5",
   "description": "A simple timer application for Nipon",
-  "author": "MatveyKostis",
+  "author": "MatveyKostis <matveykostiapk@gmail.com>",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
