@@ -20,6 +20,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'                        # включаем кэш…
+          cache-dependency-path: package.json # …но по package.json вместо lockfile
 
       - name: Install dependencies
         run: npm install
