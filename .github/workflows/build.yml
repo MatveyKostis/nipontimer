@@ -2,7 +2,7 @@ name: Build and Release
 
 on:
   release:
-    types: [published]
+    types: [created]  # Изменили на 'created' вместо 'published'
 
 jobs:
   build:
@@ -36,21 +36,17 @@ jobs:
 
       - name: Upload artifacts to release (Windows)
         if: matrix.os == 'windows-latest'
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             dist/*.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifacts to release (Linux)
         if: matrix.os == 'ubuntu-latest'
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             dist/*.AppImage
             dist/*.deb
             dist/*.rpm
             dist/*.tar.gz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
