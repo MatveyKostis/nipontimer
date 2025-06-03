@@ -3,6 +3,8 @@ const start = document.getElementById('start');
 const stop = document.getElementById('stop');
 const reset = document.getElementById('reset');
 const dvd = document.getElementById('dvd');
+const doom = document.getElementById("DOOM")
+let doomWindow = null;
 let dvd_lol = null;
 let dvd_interval = null;
 let reset_click = 0;
@@ -148,4 +150,38 @@ reset.addEventListener('click', () => {
     timer_lol.textContent = "00:00:00";
     alert("Вы сами попросили то что мы сделали")
     reset_click = 0;
+});
+doom.addEventListener('click', () => {
+    // Проверим, не открыто ли уже окно Doom
+    if (doomWindow) {
+        doomWindow.remove();
+        doom.textContent = "Запустить DOOM"
+    };
+
+    // Создаём контейнер
+    doomWindow = document.createElement('div');
+    doomWindow.className = 'doom-window';
+
+    // Кнопка закрытия
+    const closeButton = document.createElement('button');
+    closeButton.className = 'doom-close-button';
+    closeButton.textContent = '×';
+    closeButton.addEventListener('click', () => {
+        doomWindow.remove();
+    });
+
+    // Создаём iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.playdosgames.com/play/doom';
+    iframe.width = '800';
+    iframe.height = '600';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('scrolling', 'no');
+    iframe.setAttribute('allowfullscreen', 'true');
+
+    // Вставляем элементы
+    doomWindow.appendChild(closeButton);
+    doomWindow.appendChild(iframe);
+    document.body.appendChild(doomWindow);
+    doom.textContent = "Убрать DOOM";
 });
