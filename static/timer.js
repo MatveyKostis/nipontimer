@@ -151,37 +151,3 @@ reset.addEventListener('click', () => {
     alert("Вы сами попросили то что мы сделали")
     reset_click = 0;
 });
-doom.addEventListener('click', () => {
-    // Проверим, не открыто ли уже окно Doom
-    if (doomWindow) {
-        doomWindow.remove();
-        doom.textContent = "Запустить DOOM"
-    };
-
-    // Создаём контейнер
-    doomWindow = document.createElement('div');
-    doomWindow.className = 'doom-window';
-
-    // Кнопка закрытия
-    const closeButton = document.createElement('button');
-    closeButton.className = 'doom-close-button';
-    closeButton.textContent = '×';
-    closeButton.addEventListener('click', () => {
-        doomWindow.remove();
-    });
-
-    // Создаём iframe
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.playdosgames.com/play/doom';
-    iframe.width = '800';
-    iframe.height = '600';
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('scrolling', 'no');
-    iframe.setAttribute('allowfullscreen', 'true');
-
-    // Вставляем элементы
-    doomWindow.appendChild(closeButton);
-    doomWindow.appendChild(iframe);
-    document.body.appendChild(doomWindow);
-    doom.textContent = "Убрать DOOM";
-});
